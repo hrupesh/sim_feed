@@ -1,1 +1,1 @@
-# sim_feed
+# A Demo React Native App
