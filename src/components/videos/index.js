@@ -1,13 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, Text, View, Button, Dimensions } from "react-native";
 import { connect } from "react-redux";
 import { loadVideos } from "../../actions";
 import { FlatList } from "react-native-gesture-handler";
+import { Video } from "expo-av";
 
 class Videos extends React.Component {
   componentDidMount() {
     this.props.loadVideos();
-    console.log(this.props);
   }
 
   render() {
@@ -15,6 +15,20 @@ class Videos extends React.Component {
       <View style={styles.screenContainer}>
         <Text> This is Feed Component </Text>
         {this.props.isLoading ? <Text>Loading videos....</Text> : null}
+
+        <Video
+          source={{
+            uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
+          }}
+          rate={1.0}
+          volume={1.0}
+          isMuted={false}
+          resizeMode="cover"
+          usePoster={true}
+          posterSource={{ uri: "https://picsum.photos/1500/1100" }}
+          posterStyle={{ width: Dimensions.get("screen").width }}
+          style={{ width: "100%", height: 300 }}
+        />
 
         <FlatList
           data={this.props.videos}
