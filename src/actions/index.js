@@ -4,9 +4,9 @@ const loadVideos = () => ({
   type: VIDEOS.LOAD,
 });
 
-const setVideos = (VIDEOS) => ({
+const setVideos = (videos) => ({
   type: VIDEOS.LOAD_SUCCESS,
-  VIDEOS,
+  videos,
 });
 
 const setError = (error) => ({

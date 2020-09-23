@@ -83,12 +83,12 @@ const store = configureStore();
 export default function App() {
   return (
     <Provider store={store}>
-      <StatusBar
-        translucent
-        barStyle="dark-content"
-        backgroundColor="#e5e6ea"
-      />
       <NavigationContainer>
+        <StatusBar
+          translucent
+          barStyle="dark-content"
+          backgroundColor="#e5e6ea"
+        />
         <Tabs.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
@@ -111,6 +111,11 @@ export default function App() {
           tabBarOptions={{
             activeTintColor: "black",
             inactiveTintColor: "gray",
+            showLabel: false,
+            style: {
+              backgroundColor: "#e5e6ea",
+              height: 60,
+            },
           }}
         >
           <Tabs.Screen name="Videos" component={VideoStackScreen} />
