@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { loadVideos } from "../../actions";
 import { FlatList } from "react-native-gesture-handler";
 import { Video } from "expo-av";
+import VideoCard from "./VideoCard";
 
 class Videos extends React.Component {
   componentDidMount() {
@@ -13,22 +14,7 @@ class Videos extends React.Component {
   render() {
     return (
       <View style={styles.screenContainer}>
-        <Text> This is Feed Component </Text>
         {this.props.isLoading ? <Text>Loading videos....</Text> : null}
-
-        <Video
-          source={{
-            uri: "http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4",
-          }}
-          rate={1.0}
-          volume={1.0}
-          isMuted={false}
-          resizeMode="cover"
-          usePoster={true}
-          posterSource={{ uri: "https://picsum.photos/1500/1100" }}
-          posterStyle={{ width: Dimensions.get("screen").width }}
-          style={{ width: "100%", height: 300 }}
-        />
 
         <FlatList
           data={this.props.videos}
@@ -36,13 +22,7 @@ class Videos extends React.Component {
             item.title + Math.floor(Math.random() * 987546)
           }
           renderItem={({ item }) => {
-            return (
-              <View>
-                <Text>{item.title}</Text>
-                <Text>{item.thumbnail_url}</Text>
-                <Text>{item.video_url}</Text>
-              </View>
-            );
+            return <VideoCard video={item} />;
           }}
         />
       </View>
