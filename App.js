@@ -1,28 +1,26 @@
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView } from "react-native";
-import Feed from "./src/components/feed/index";
+import Videos from "./src/components/videos";
+import Strips from "./src/components/strips";
 import { Provider } from "react-redux";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import configureStore from "./src/store";
+
+const Tab = createBottomTabNavigator();
 
 const store = configureStore();
 
 export default function App() {
   return (
     <Provider store={store}>
-      <SafeAreaView style={styles.container}>
-        <Feed />
-      </SafeAreaView>
+      <NavigationContainer>
+        <Tab.Navigator>
+          <Tab.Screen name="Videos" component={Videos} />
+          <Tab.Screen name="Strips" component={Strips} />
+        </Tab.Navigator>
+      </NavigationContainer>
     </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 50,
-  },
-});

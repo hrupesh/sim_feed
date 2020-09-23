@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { connect } from "react-redux";
 import { loadVideos } from "../../actions";
 
-export class Feed extends React.Component {
+class Videos extends React.Component {
   componentDidMount() {
     this.props.loadVideos();
   }
@@ -30,4 +30,4 @@ const mapDispatchToProps = (dispatch) => ({
   loadVideos: () => dispatch(loadVideos()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Feed);
+export default connect(mapStateToProps, mapDispatchToProps)(Videos);
