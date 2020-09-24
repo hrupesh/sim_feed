@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Modal,
+  Alert,
+  Dimensions,
+} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
-import Constants from "expo-constants";
+import * as Navigation from "../../../CustomNavigation";
+import { IMAGE } from "../../constants/img";
 
 export default function AvatarImage() {
-  const [image, setImage] = useState(
-    "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-  );
+  const [image, setImage] = useState(IMAGE.uri);
 
   useEffect(() => {
     (async () => {
@@ -20,7 +27,8 @@ export default function AvatarImage() {
         }
       }
     })();
-  }, []);
+    setImage(IMAGE.uri);
+  });
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -35,21 +43,43 @@ export default function AvatarImage() {
     }
   };
 
+  const askChoice = () =>
+    Alert.alert(
+      "How would you like to upload your Avatar Image?",
+      "You can either choose from your gallery or click a new one",
+      [
+        {
+          text: "Cancel",
+        },
+        {
+          text: "Gallery 🖼",
+          onPress: () => pickImage(),
+        },
+        {
+          text: "Click 📷",
+          onPress: () => Navigation.navigate("CameraScreen"),
+        },
+      ],
+      { cancelable: false }
+    );
+
   return (
-    <TouchableOpacity activeOpacity={0.75} onPress={pickImage}>
-      <Image
-        source={{
-          uri: image,
-        }}
-        style={{
-          height: 40,
-          width: 40,
-          borderRadius: 40 / 2,
-          marginRight: 15,
-          marginTop: 20,
-        }}
-      />
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity activeOpacity={0.75} onPress={askChoice}>
+        <Image
+          source={{
+            uri: image,
+          }}
+          style={{
+            height: 40,
+            width: 40,
+            borderRadius: 40 / 2,
+            marginRight: 15,
+            marginTop: 20,
+          }}
+        />
+      </TouchableOpacity>
+    </>
   );
 }
 

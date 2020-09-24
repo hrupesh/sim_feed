@@ -9,7 +9,6 @@ const configureStore = () => {
   const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
   sagaMiddleware.run(videosSaga);
 
-  store.dispatch({ type: "Hey!" });
   return store;
 };
 

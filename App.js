@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View, StatusBar, Image } from "react-native";
+import { Text, View, StatusBar } from "react-native";
 import Videos from "./src/components/videos";
 import Strips from "./src/components/strips";
 import { Provider } from "react-redux";
@@ -7,9 +7,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { navigationRef } from "./CustomNavigation";
 
 import configureStore from "./src/store";
 import AvatarImage from "./src/components/videos/AvatarImage";
+import CameraScreen from "./src/components/videos/CameraScreen";
 
 const VideoStack = createStackNavigator();
 
@@ -41,7 +43,7 @@ function VideoStackScreen() {
               </Text>
             </View>
           ),
-          headerRight: (props) => <AvatarImage />,
+          headerRight: () => <AvatarImage />,
           title: false,
           headerStyle: {
             height: 100,
@@ -51,6 +53,7 @@ function VideoStackScreen() {
         name="Videos"
         component={Videos}
       />
+      <VideoStack.Screen name="CameraScreen" component={CameraScreen} />
     </VideoStack.Navigator>
   );
 }
@@ -62,7 +65,7 @@ const store = configureStore();
 export default function App() {
   return (
     <Provider store={store}>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <StatusBar
           translucent
           barStyle="dark-content"
