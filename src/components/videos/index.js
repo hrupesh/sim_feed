@@ -13,7 +13,6 @@ import {
 import { connect } from "react-redux";
 import { loadVideos } from "../../actions";
 import { FlatList } from "react-native-gesture-handler";
-import { Video } from "expo-av";
 import VideoCard from "./VideoCard";
 
 function Videos({ isLoading, videos, error, loadVideos }) {

@@ -1,12 +1,54 @@
 import React, { useState } from "react";
+import { Video } from "expo-av";
 import { StyleSheet, Text, View, Image } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function VideoCard({ video }) {
-  const [isPlaying, setPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [usePoster, setUsePoster] = useState(true);
 
   return (
     <View style={styles.container}>
-      <Image source={{ uri: `${video.thumbnail_url}` }} style={styles.image} />
+      <Video
+        source={{
+          uri: `${video.video_url}`,
+        }}
+        rate={1.0}
+        volume={1.0}
+        isMuted={false}
+        resizeMode="cover"
+        shouldPlay={isPlaying}
+        isLooping
+        style={{ width: "100%", height: 200, borderRadius: 10 }}
+        onReadyForDisplay={() => {
+          setUsePoster(false);
+        }}
+        usePoster={usePoster}
+        posterSource={{ uri: `${video.thumbnail_url}` }}
+        posterStyle={{ width: "100%", height: 200, resizeMode: "cover" }}
+        useNativeControls={false}
+      />
+      {!isPlaying ? (
+        <MaterialCommunityIcons
+          name="play-circle"
+          size={75}
+          color={usePoster ? "#0000" : "#0008"}
+          style={styles.icon}
+          onPress={() => {
+            setIsPlaying(true);
+          }}
+        />
+      ) : (
+        <MaterialCommunityIcons
+          name="pause-circle"
+          size={75}
+          color={usePoster ? "#0000" : "#0008"}
+          style={styles.icon}
+          onPress={() => {
+            setIsPlaying(false);
+          }}
+        />
+      )}
       <View style={styles.overlap}>
         <View
           style={{
@@ -63,5 +105,15 @@ const styles = StyleSheet.create({
   dummy: {
     fontSize: 10,
     color: "#aaa",
+  },
+  icon: {
+    position: "absolute",
+    alignSelf: "center",
+    marginTop: 65,
+    textShadowColor: "#fff2",
+    textShadowOffset: {
+      height: 0,
+    },
+    textShadowRadius: 15,
   },
 });
