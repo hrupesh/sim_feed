@@ -13,7 +13,7 @@ import { IMAGE } from "../../constants/img";
 
 export default function CameraScreen({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  const [type, setType] = useState(Camera.Constants.Type.front);
   const [flashMode, setFlashMode] = useState(Camera.Constants.FlashMode.on);
   let camera = null;
 

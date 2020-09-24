@@ -39,7 +39,8 @@ export default function AvatarImage() {
     });
 
     if (!result.cancelled) {
-      setImage(result.uri);
+      IMAGE.uri = result.uri;
+      setImage(IMAGE.uri);
     }
   };
 
