@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  SafeAreaView,
-  StatusBar,
-  Image,
-} from "react-native";
+import { Text, View, StatusBar, Image } from "react-native";
 import Videos from "./src/components/videos";
 import Strips from "./src/components/strips";
 import { Provider } from "react-redux";
@@ -14,9 +7,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createStackNavigator } from "@react-navigation/stack";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { BlurView } from "expo-blur";
 
 import configureStore from "./src/store";
+import AvatarImage from "./src/components/videos/AvatarImage";
 
 const VideoStack = createStackNavigator();
 
@@ -48,21 +41,7 @@ function VideoStackScreen() {
               </Text>
             </View>
           ),
-          headerRight: (props) => (
-            <Image
-              source={{
-                uri:
-                  "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-              }}
-              style={{
-                height: 40,
-                width: 40,
-                borderRadius: 40 / 2,
-                marginRight: 15,
-                marginTop: 20,
-              }}
-            />
-          ),
+          headerRight: (props) => <AvatarImage />,
           title: false,
           headerStyle: {
             height: 100,
