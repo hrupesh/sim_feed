@@ -5,7 +5,6 @@ import { setVideos, setError } from "../actions";
 
 function* handleVideosLoad() {
   try {
-    // console.log("Loading......");
     const videos = yield call(fetchVideos);
     yield put(setVideos(videos));
   } catch (e) {

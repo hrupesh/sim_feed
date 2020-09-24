@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 
 export default function VideoCard({ video }) {
+  const [isPlaying, setPlaying] = useState(false);
+
   return (
     <View style={styles.container}>
       <Image source={{ uri: `${video.thumbnail_url}` }} style={styles.image} />
