@@ -11,7 +11,7 @@ import {
   ToastAndroid,
 } from "react-native";
 import { connect } from "react-redux";
-import { loadVideos, addImg } from "../../actions";
+import { loadVideos } from "../../actions";
 import { FlatList } from "react-native-gesture-handler";
 import VideoCard from "./VideoCard";
 
