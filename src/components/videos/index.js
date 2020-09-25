@@ -55,13 +55,6 @@ function Videos({ isLoading, videos, error, loadVideos }) {
         onEndReached={() => {
           loadVideos();
         }}
-        contentContainerStyle={
-          {
-            // backgroundColor: "red",
-            // position: "absolute",
-            // width: "100%",
-          }
-        }
         ListFooterComponent={
           isLoading ? (
             <ActivityIndicator

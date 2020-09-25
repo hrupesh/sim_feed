@@ -3,7 +3,7 @@ import { CHEMICALS } from "../../constants";
 const chemicalsReducer = (state = [], action) => {
   switch (action.type) {
     case CHEMICALS.LOAD_SUCCESS:
-      return [...state, ...action.chemicals];
+      return [action.chemicals];
     default:
       return state;
   }

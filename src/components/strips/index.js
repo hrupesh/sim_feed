@@ -1,8 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import React, { useEffect } from "react";
+import { StyleSheet, Text, View, ActivityIndicator, Image } from "react-native";
+import {
+  TouchableOpacity,
+  FlatList,
+  ScrollView,
+} from "react-native-gesture-handler";
 import { loadChemicals } from "../../actions";
 import { connect } from "react-redux";
+import ColorList from "./ColorList";
+import { StatusBar } from "expo-status-bar";
 
 function Strips({
   chemicalsisLoading,
@@ -12,13 +18,29 @@ function Strips({
 }) {
   useEffect(() => {
     loadChemicals();
-    console.log(chemicalsisLoading);
-    console.log(chemicals);
-    console.log(chemicalsError);
   }, []);
+
+  if (chemicalsisLoading) {
+    return (
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#fff",
+        }}
+      >
+        <Image
+          source={{ uri: "https://i.gifer.com/DuZY.gif" }}
+          style={{ width: "100%", height: "100%", resizeMode: "contain" }}
+        />
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
+      <StatusBar backgroundColor="#fff" translucent />
       <View style={styles.nextContainer}>
         <TouchableOpacity>
           <View style={styles.nextbtn}>
@@ -27,14 +49,62 @@ function Strips({
         </TouchableOpacity>
       </View>
       <Text style={styles.title}>Test Strip</Text>
+      <ScrollView>
+        <View
+          style={{
+            flexDirection: "row",
+            marginTop: 5,
+          }}
+        >
+          <FlatList
+            style={{ maxWidth: 25 }}
+            data={chemicals[0]}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => {
+              return (
+                <View
+                  style={{
+                    width: 25,
+                    height: 100,
+                  }}
+                >
+                  <View
+                    style={{
+                      backgroundColor: `${item.values[0].color}`,
+                      width: 25,
+                      height: 25,
+                      position: "absolute",
+                      bottom: 30,
+                    }}
+                  ></View>
+                </View>
+              );
+            }}
+            contentContainerStyle={{
+              borderWidth: 1,
+              borderColor: "#e5e6ea",
+              borderRadius: 5,
+            }}
+          />
+          <FlatList
+            data={chemicals[0]}
+            keyExtractor={(item) => item.id}
+            renderItem={({ item }) => {
+              return <ColorList pname={item} />;
+            }}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
+    paddingTop: 40,
     paddingHorizontal: 15,
+    backgroundColor: "#fff",
+    flex: 1,
   },
   nextContainer: {
     flexDirection: "row",
@@ -42,7 +112,7 @@ const styles = StyleSheet.create({
   },
   nextbtn: {
     backgroundColor: "#888a",
-    borderRadius: 20,
+    borderRadius: 50,
     paddingHorizontal: 10,
     paddingVertical: 3,
     alignItems: "center",
@@ -56,7 +126,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 36,
     fontWeight: "bold",
-    color: "blue",
+    color: "#303F9F",
   },
 });
 
