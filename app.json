@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "sim_feed",
-    "slug": "sim_feed",
+    "name": "Videos And Strips",
+    "slug": "videos-and-strips",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,6 +21,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "",
+    "githubUrl": "https://github.com/hrupesh/sim_feed"
   }
 }
