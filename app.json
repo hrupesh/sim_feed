@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Videos And Strips",
+    "name": "Sim-Feed",
     "slug": "videos-and-strips",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -8,16 +8,17 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#512DF8"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "com.hrupesh.simfeed"
     },
     "web": {
       "favicon": "./assets/favicon.png"
