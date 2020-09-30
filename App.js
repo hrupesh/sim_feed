@@ -69,7 +69,7 @@ export default function App() {
         <StatusBar
           translucent
           barStyle="dark-content"
-          backgroundColor="#e5e6ea"
+          backgroundColor="#e5e6ef"
         />
         <Tabs.Navigator
           screenOptions={({ route }) => ({
