@@ -62,6 +62,7 @@ const Tabs = createBottomTabNavigator();
 
 const store = configureStore();
 
+
 export default function App() {
   return (
     <Provider store={store}>
